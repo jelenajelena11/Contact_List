@@ -1,5 +1,6 @@
-import ContactItem from '../contactItem/ContactItem'
-import { Contact } from './Contact'
+import ContactItem from "../contactItem/ContactItem";
+import { Contact } from "./Contact";
+import React from "react";
 
 export default function ContactList({ contacts }: any) {
   return (
@@ -7,9 +8,14 @@ export default function ContactList({ contacts }: any) {
       <p>Lista kontakata</p>
       <ul>
         {contacts.map((contact: Contact) => (
-          <ContactItem key={contact.id} id={contact.id} firstName={contact.firstName} onClick={() => {}}/>
+          <ContactItem
+            key={contact.id}
+            id={contact.id}
+            firstName={contact.firstName}
+            onClick={() => {}}
+          />
         ))}
       </ul>
     </>
-  )
+  );
 }

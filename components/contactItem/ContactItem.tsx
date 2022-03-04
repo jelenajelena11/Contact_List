@@ -1,18 +1,21 @@
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
+import React from "react";
 
 export default function ContactItem({ id, firstName, onClick }: any) {
-  const router = useRouter()
+  const router = useRouter();
 
   function showDetails() {
-    router.push('/' + id)
+    router.push("/" + id);
   }
   return (
     <>
       <ul>
         <li onClick={showDetails}>
-          <a>{firstName}, {id}</a>
+          <a>
+            {firstName}, {id}
+          </a>
         </li>
       </ul>
     </>
-  )
+  );
 }

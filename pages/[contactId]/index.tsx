@@ -1,17 +1,16 @@
-import ContactItem from '../../components/contactItem/ContactItem'
+import ContactItem from "../../components/contactItem/ContactItem";
+import Head from "next/head";
+import React from "react";
 
 export default function ContactItemDetails() {
-  return <ContactItem />
+  return (
+    <>
+      <Head>
+        <title>Contact</title>
+        <meta name="description" content="Browse a contact" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <ContactItem />
+    </>
+  );
 }
-
-// export async function getStaticProps(){
-//   // axios
-//   // .get('http://localhost:8000/contacts')
-//   // .then((resp) => setContacts(resp.data))
-//   return {
-//     props: {
-//       contacts: contacts
-//     },
-//     revalidate: 10
-//   }
-// } 
