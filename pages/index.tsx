@@ -2,6 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import ContactList from "../components/contacts/ContactList";
 import React from "react";
+import Header from "../components/layout/header/Header";
 
 const Home = ({ contacts }: any) => {
   return (
@@ -11,7 +12,10 @@ const Home = ({ contacts }: any) => {
         <meta name="description" content="Browse a list of contacts" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
+      {/* <ListContainer> */}
       <ContactList contacts={contacts} />
+      {/* </ListContainer> */}
     </>
   );
 };
