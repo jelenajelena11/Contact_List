@@ -1,10 +1,13 @@
 import axios from "axios";
 import Head from "next/head";
 import ContactList from "../components/contacts/ContactList";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../components/layout/header/Header";
+import ListContainer from "../components/layout/listContainer/ListContainer";
 
 const Home = ({ contacts }: any) => {
+  const [contactList, setContactList] = useState();
+  const [favourites, setFavourites] = useState();
   return (
     <>
       <Head>
@@ -13,9 +16,14 @@ const Home = ({ contacts }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {/* <ListContainer> */}
+      <ListContainer
+        setContactList={setContactList}
+        setFavourites={setFavourites}
+      >
+        {/* {contactList && <ContactList contacts={contacts} />} */}
+        {favourites && <p>Jej</p>}
+      </ListContainer>
       <ContactList contacts={contacts} />
-      {/* </ListContainer> */}
     </>
   );
 };

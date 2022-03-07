@@ -62,6 +62,15 @@
       "email": "ficko@gmail.com",
       "favourite": true,
       "phones": []
+    },
+    {
+      "id": "11",
+      "firstName": "Mile",
+      "lastName": "Milinkovic",
+      "profilePhoto": "https://unsplash.com/photos/LNRyGwIJr5c",
+      "email": "mile@gmail.com",
+      "favourite": true,
+      "phones": []
     }
   ]
 }

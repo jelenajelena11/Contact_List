@@ -8,3 +8,11 @@ export const ListWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
 `;
+
+export const Line = styled.hr`
+  background-color: #6fc4c9;
+  width: 80vw;
+  margin: auto;
+  height: 2px;
+  border-width: 0;
+`;
