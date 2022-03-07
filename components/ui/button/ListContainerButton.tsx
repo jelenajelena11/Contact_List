@@ -1,18 +1,28 @@
 import React from "react";
 import { Button, ButtonContainer } from "./ListContainerButton.styled";
-
-interface ButtonProps {
-  buttonText: string;
-  onClick(): void;
-}
-
-export default function ListContainerButton({
-  buttonText,
-  onClick,
-}: ButtonProps) {
+import { useRouter } from "next/router";
+import { Line } from "../../contacts/ContactList.styled";
+export default function ListContainerButton() {
+  const router = useRouter();
   return (
-    <ButtonContainer>
-      <Button>{buttonText}</Button>
-    </ButtonContainer>
+    <>
+      <ButtonContainer>
+        <Button
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          All contacts
+        </Button>
+        <Button
+          onClick={() => {
+            router.push("/favourites");
+          }}
+        >
+          Favourites
+        </Button>
+      </ButtonContainer>
+      <Line />
+    </>
   );
 }

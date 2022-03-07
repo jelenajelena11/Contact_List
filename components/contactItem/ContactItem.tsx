@@ -1,9 +1,22 @@
 import { useRouter } from "next/router";
 import React from "react";
 import DeleteItemDialog from "../ui/dialog/DeleteItemDialog";
-import { ContactItemWrapper, Item } from "./ContactItem.styled";
+import {
+  ContactItemWrapper,
+  Item,
+  ContactIcons,
+  ContactImage,
+} from "./ContactItem.styled";
+import { faHeart, faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function ContactItem({ id, firstName, lastName, onClick }: any) {
+export default function ContactItem({
+  id,
+  firstName,
+  lastName,
+  onClick,
+  profilePhoto,
+}: any) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
@@ -19,17 +32,32 @@ export default function ContactItem({ id, firstName, lastName, onClick }: any) {
     <>
       {/* <ContactItemWrapper onClick={showDetails}> */}
       <ContactItemWrapper>
-        <div style={{ width: "100%" }}>
-          <div>favourite</div>
+        <ContactIcons>
+          <FontAwesomeIcon
+            icon={faHeart}
+            style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
+          />
           <div>
-            <button>edit</button>
-            <button onClick={deleteItem}>delete</button>
+            <span>
+              <FontAwesomeIcon
+                icon={faPen}
+                style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
+              />
+            </span>
+            <span onClick={deleteItem}>
+              <FontAwesomeIcon
+                icon={faTrashCan}
+                style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
+              />
+            </span>
           </div>
-        </div>
-        <img src="" alt="Img"></img>
+        </ContactIcons>
+        {/* <div> */}
+        <ContactImage src={profilePhoto} alt="Img" />
         <Item>
           {firstName} {lastName}
         </Item>
+        {/* </div> */}
       </ContactItemWrapper>
       {open && <DeleteItemDialog open={open} onClose={() => setOpen(false)} />}
     </>

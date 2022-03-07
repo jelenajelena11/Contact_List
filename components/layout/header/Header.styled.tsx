@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const HeaderWrapper = styled.div`
   padding: 2em;
   background: linear-gradient(to left, #6fc4c9, #36a1ab);
-  height: 3vh;
-  width: 80vw;
+  height: 2vh;
   text-align: center;
   margin: 0 auto;
   display: flex;
@@ -17,4 +16,5 @@ export const HeaderTitle = styled.h3`
   margin: 0 auto;
   font-size: 26px;
   text-transform: uppercase;
+  letter-spacing: 7px;
 `;

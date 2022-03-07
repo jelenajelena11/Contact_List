@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
-  padding: 1em;
+  padding: 3em;
+  text-align: center;
 `;
 
 export const Button = styled.button`
