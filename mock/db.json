@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "profilePhoto": "https://picsum.photos/200/200",
+    "email": "jane@gmail.com",
+    "favourite": true,
+    "phones": [
+      {
+        "id": 1,
+        "label": "(924) 478-3313"
+      },
+      {
+        "id": 2,
+        "label": "(924) 478-3313"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "firstName": "Cristine",
+    "lastName": "Faulkner",
+    "profilePhoto": "https://picsum.photos/200/200",
+    "email": "cris@gmail.com",
+    "favourite": false,
+    "phones": [
+      {
+        "id": 1,
+        "label": "(924) 478-3313"
+      },
+      {
+        "id": 2,
+        "label": "(924) 478-3313"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "firstName": "Roland",
+    "lastName": "Chandler",
+    "profilePhoto": "https://picsum.photos/200/200",
+    "email": "roland2@gmail.com",
+    "favourite": true,
+    "phones": [
+      {
+        "id": 1,
+        "label": "(924) 478-3313"
+      },
+      {
+        "id": 2,
+        "label": "(924) 478-3313"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "firstName": "Mary",
+    "lastName": "Jane",
+    "profilePhoto": "https://picsum.photos/200/200",
+    "email": "mary45@gmail.com",
+    "favourite": false,
+    "phones": [
+      {
+        "id": 1,
+        "label": "(924) 478-3313"
+      },
+      {
+        "id": 2,
+        "label": "(924) 478-3313"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "firstName": "Tom",
+    "lastName": "Ford",
+    "profilePhoto": "https://picsum.photos/200/200",
+    "email": "tom@gmail.com",
+    "favourite": false,
+    "phones": [
+      {
+        "id": 1,
+        "label": "(924) 478-3313"
+      },
+      {
+        "id": 2,
+        "label": "(924) 478-3313"
+      }
+    ]
+  }
+]

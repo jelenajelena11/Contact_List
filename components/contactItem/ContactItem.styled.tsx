@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { theme } from "../../component-library/theme";
 
 export const ContactItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid #cdc2c2;
+  border: 1px solid ${theme.colors.lightGray};
   border-radius: 3px;
   width: 14vw;
   height: 16vh;
@@ -14,12 +15,15 @@ export const ContactItemWrapper = styled.div`
 export const Item = styled.div`
   margin: 1em auto;
   font-size: 18px;
-  color: #ccd1d0;
+  color: ${theme.colors.itemGray};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const ListItem = styled.div`
   display: flex;
-  border: 1px solid #dde1e5;
+  border: 1px solid ${theme.colors.blueGray};
   border-radius: 3px;
   padding: 2em;
   width: 14vw;
@@ -29,7 +33,7 @@ export const ListItem = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #dde1e5;
+  color: ${theme.colors.blueGray};
   &:hover {
     cursor: pointer;
   }
@@ -49,4 +53,9 @@ export const ContactImage = styled.img`
   border-radius: 50%;
   display: block;
   max-width: 28%;
+`;
+
+export const DeleteSpan = styled.span``;
+export const ButtonDiv = styled.div`
+  display: flex;
 `;

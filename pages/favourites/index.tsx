@@ -1,10 +1,11 @@
 import Head from "next/head";
 import Header from "../../components/layout/header/Header";
 import ListContainerButton from "../../components/ui/button/ListContainerButton";
-import axios from "axios";
 import FavouritesList from "../../components/favourites/FavouritesList";
+import contacts from "../../mock/db.json";
+import { ListOfFavourites } from "../../components/contacts/Contact";
 
-export default function Favourites({ favourites }: any) {
+export default function Favourites({ favourites }: ListOfFavourites) {
   return (
     <>
       <Head>
@@ -13,19 +14,14 @@ export default function Favourites({ favourites }: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <ListContainerButton></ListContainerButton>
+      <ListContainerButton />
       <FavouritesList favourites={favourites} />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const response = await axios.get(
-    "https://mocki.io/v1/6fc5fa46-dcbc-4a47-affa-3533eac528c6"
-  );
-  const data = response.data.filter(
-    (contact: any) => contact.favourite === true
-  );
+  const data = contacts.filter((contact: any) => contact.favourite === true);
   return {
     props: {
       favourites: data,

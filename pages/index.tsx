@@ -1,11 +1,12 @@
-import axios from "axios";
 import Head from "next/head";
 import ContactList from "../components/contacts/ContactList";
 import React from "react";
 import Header from "../components/layout/header/Header";
 import ListContainerButton from "../components/ui/button/ListContainerButton";
+import contacts from "../mock/db.json";
+import { ContactsList } from "../components/contacts/Contact";
 
-const Home = ({ contacts }: any) => {
+const Home = ({ contacts }: ContactsList) => {
   return (
     <>
       <Head>
@@ -21,13 +22,9 @@ const Home = ({ contacts }: any) => {
 };
 
 export async function getStaticProps() {
-  const response = await axios.get(
-    "https://mocki.io/v1/6fc5fa46-dcbc-4a47-affa-3533eac528c6"
-  );
-  const data = response.data;
   return {
     props: {
-      contacts: data,
+      contacts: contacts,
     },
     revalidate: 1,
   };

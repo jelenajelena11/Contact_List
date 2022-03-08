@@ -1,3 +1,11 @@
+export interface ContactsList {
+  contacts: Contact[];
+}
+
+export interface ListOfFavourites {
+  favourites: Contact[];
+}
+
 export interface Contact {
   id: number;
   firstName: string;
@@ -5,5 +13,10 @@ export interface Contact {
   profilePhoto: string;
   email: string;
   favourite: boolean;
-  phones: [];
+  phones: Phone[];
+}
+
+export interface Phone {
+  name: string;
+  label: string;
 }

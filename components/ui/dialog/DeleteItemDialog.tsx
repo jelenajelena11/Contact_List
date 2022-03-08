@@ -1,16 +1,19 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
-import { Button } from "@mui/material";
 import {
+  ButtonDialogWrapper,
   CancelButton,
   DeleteButton,
   DialogTitle,
+  DialogWrapper,
+  TextDialog,
 } from "./DeleteItemDialog.styled";
 
 export default function DeleteItemDialog({
   onClose,
   selectedValue,
   open,
+  contactId,
 }: any) {
   function deleteContact() {}
   return (
@@ -19,20 +22,14 @@ export default function DeleteItemDialog({
       open={open}
       PaperProps={{ sx: { width: "29%", height: "25vh", padding: "0 1em" } }}
     >
-      <div>
-        <p>Delete</p>
-        <hr />
+      <DialogWrapper>
+        <TextDialog>Delete</TextDialog>
         <DialogTitle>are you sure you want to delete this contact?</DialogTitle>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+        <ButtonDialogWrapper>
           <CancelButton onClick={onClose}>Cancel</CancelButton>
           <DeleteButton onClick={deleteContact}>Delete</DeleteButton>
-        </div>
-      </div>
+        </ButtonDialogWrapper>
+      </DialogWrapper>
     </Dialog>
   );
 }
