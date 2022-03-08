@@ -1,65 +1,58 @@
-import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import DeleteItemDialog from "../ui/dialog/DeleteItemDialog";
 import {
   ContactItemWrapper,
   Item,
   ContactIcons,
   ContactImage,
+  DeleteSpan,
+  ButtonDiv,
 } from "./ContactItem.styled";
-import { faHeart, faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import EditButton from "../ui/button/edit/EditButton";
+import FavouriteButton from "../ui/button/favourite/FavouriteButton";
+import DeleteButton from "../ui/button/delete/DeleteButton";
+import { Contact } from "../contacts/Contact";
 
 export default function ContactItem({
   id,
   firstName,
   lastName,
-  onClick,
   profilePhoto,
-}: any) {
-  const router = useRouter();
+}: Contact) {
   const [open, setOpen] = React.useState(false);
+  const [inEditMode, setInEditMode] = useState(false);
 
-  function showDetails() {
-    router.push("/" + id);
-  }
-
-  function deleteItem(event: any) {
-    event.stopPropagation;
-    setOpen(true);
-  }
   return (
     <>
-      {/* <ContactItemWrapper onClick={showDetails}> */}
       <ContactItemWrapper>
         <ContactIcons>
-          <FontAwesomeIcon
-            icon={faHeart}
-            style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
-          />
-          <div>
-            <span>
-              <FontAwesomeIcon
-                icon={faPen}
-                style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
-              />
-            </span>
-            <span onClick={deleteItem}>
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
-              />
-            </span>
-          </div>
+          <FavouriteButton />
+          <ButtonDiv>
+            <Link href="/editContact/[id]">
+              <DeleteSpan onClick={() => setInEditMode(true)}>
+                <EditButton />
+              </DeleteSpan>
+            </Link>
+            <DeleteSpan onClick={() => setOpen(true)}>
+              <DeleteButton />
+            </DeleteSpan>
+          </ButtonDiv>
         </ContactIcons>
-        {/* <div> */}
         <ContactImage src={profilePhoto} alt="Img" />
-        <Item>
-          {firstName} {lastName}
-        </Item>
-        {/* </div> */}
+        <Link href={`/[id]`} as={`/${id}`}>
+          <Item>
+            {firstName} {lastName}
+          </Item>
+        </Link>
       </ContactItemWrapper>
-      {open && <DeleteItemDialog open={open} onClose={() => setOpen(false)} />}
+      {open && (
+        <DeleteItemDialog
+          contactId={id}
+          open={open}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </>
   );
 }

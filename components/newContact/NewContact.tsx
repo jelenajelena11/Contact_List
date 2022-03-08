@@ -1,5 +1,4 @@
 import { Formik } from "formik";
-import { useRouter } from "next/router";
 import {
   ContactFormContainer,
   ContactInput,
@@ -9,15 +8,16 @@ import {
   BtnCancel,
   UploadDiv,
   BackBtn,
+  FormLabel,
 } from "./NewContact.styled";
 import {
   faArrowTurnUp,
   faArrowUpFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 export default function NewContact() {
-  const router = useRouter();
   return (
     <>
       <Formik
@@ -40,19 +40,21 @@ export default function NewContact() {
               />
             </UploadDiv>
             <NewContactForm onSubmit={handleSubmit}>
-              <BackBtn onClick={() => router.push("/")}>
-                <FontAwesomeIcon
-                  icon={faArrowTurnUp}
-                  style={{
-                    width: "16px",
-                    height: "16px",
-                    transform: "rotateZ(-90deg)",
-                    color: "#c1c1c1",
-                    float: "left",
-                  }}
-                />
-              </BackBtn>
-              <label style={{ borderTop: "1px solid gray" }}>Full name</label>
+              <Link href="/">
+                <BackBtn>
+                  <FontAwesomeIcon
+                    icon={faArrowTurnUp}
+                    style={{
+                      width: "16px",
+                      height: "16px",
+                      transform: "rotateZ(-90deg)",
+                      color: "#c1c1c1",
+                      float: "left",
+                    }}
+                  />
+                </BackBtn>
+              </Link>
+              <FormLabel>Full name</FormLabel>
               <ContactInput
                 type="text"
                 value={values.firstName}
@@ -61,7 +63,7 @@ export default function NewContact() {
                 placeholder="First name"
               />
               <hr />
-              <label>Lastname</label>
+              <FormLabel>Lastname</FormLabel>
               <ContactInput
                 type="text"
                 value={values.lastName}
