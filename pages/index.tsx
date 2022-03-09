@@ -1,12 +1,17 @@
 import Head from "next/head";
 import ContactList from "../components/contacts/ContactList";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/layout/header/Header";
 import ListContainerButton from "../components/ui/button/ListContainerButton";
-import contacts from "../mock/db.json";
-import { ContactsList } from "../components/contacts/Contact";
+import { Contact, ContactsList } from "../components/contacts/Contact";
+import { useData } from "../mock/useData";
 
-const Home = ({ contacts }: ContactsList) => {
+const Home = () => {
+  const [contacts, setContacts] = useState<Contact[]>([]);
+  useEffect(() => {
+    setContacts(useData());
+  }, []);
+
   return (
     <>
       <Head>
@@ -20,14 +25,5 @@ const Home = ({ contacts }: ContactsList) => {
     </>
   );
 };
-
-export async function getStaticProps() {
-  return {
-    props: {
-      contacts: contacts,
-    },
-    revalidate: 1,
-  };
-}
 
 export default Home;

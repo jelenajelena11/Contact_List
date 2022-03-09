@@ -8,11 +8,11 @@
     "favourite": true,
     "phones": [
       {
-        "id": 1,
+        "name": "Husband",
         "label": "(924) 478-3313"
       },
       {
-        "id": 2,
+        "name": "Husband",
         "label": "(924) 478-3313"
       }
     ]
@@ -26,11 +26,11 @@
     "favourite": false,
     "phones": [
       {
-        "id": 1,
+        "name": "Husband",
         "label": "(924) 478-3313"
       },
       {
-        "id": 2,
+        "name": "Husband",
         "label": "(924) 478-3313"
       }
     ]
@@ -44,11 +44,11 @@
     "favourite": true,
     "phones": [
       {
-        "id": 1,
+        "name": "Husband",
         "label": "(924) 478-3313"
       },
       {
-        "id": 2,
+        "name": "Husband",
         "label": "(924) 478-3313"
       }
     ]
@@ -62,11 +62,11 @@
     "favourite": false,
     "phones": [
       {
-        "id": 1,
+        "name": "Husband",
         "label": "(924) 478-3313"
       },
       {
-        "id": 2,
+        "name": "Husband",
         "label": "(924) 478-3313"
       }
     ]
@@ -80,11 +80,11 @@
     "favourite": false,
     "phones": [
       {
-        "id": 1,
+        "name": "Husband",
         "label": "(924) 478-3313"
       },
       {
-        "id": 2,
+        "name": "Husband",
         "label": "(924) 478-3313"
       }
     ]

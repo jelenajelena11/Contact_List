@@ -9,7 +9,6 @@ export const ButtonContainer = styled.div`
 export const Button = styled.button`
   background-color: transparent;
   border: none;
-  color: ${theme.colors.turquoise};
   font-size: 18px;
   margin: 2%;
   &:hover {

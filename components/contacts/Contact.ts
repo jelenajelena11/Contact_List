@@ -16,6 +16,10 @@ export interface Contact {
   phones: Phone[];
 }
 
+export interface ContactProps {
+  contact: Contact;
+}
+
 export interface Phone {
   name: string;
   label: string;

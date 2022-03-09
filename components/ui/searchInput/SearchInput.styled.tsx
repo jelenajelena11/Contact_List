@@ -6,6 +6,7 @@ export const InputWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
 export const InputField = styled.input`
@@ -14,5 +15,6 @@ export const InputField = styled.input`
   padding: 1.5em;
   border-radius: 3px;
   margin: 5em auto;
+  padding-left: 60px;
   box-shadow: 0px 11px 30px ${theme.colors.lighterBlue};
 `;
