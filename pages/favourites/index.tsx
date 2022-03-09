@@ -13,7 +13,7 @@ export default function Favourites({ favourites }: ListOfFavourites) {
         <meta name="description" content="Browse a list of contacts" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {/* <Header /> */}
       <ListContainerButton />
       <FavouritesList favourites={favourites} />
     </>

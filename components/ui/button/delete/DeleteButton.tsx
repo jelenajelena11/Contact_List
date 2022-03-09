@@ -6,7 +6,7 @@ export default function DeleteButton() {
     <>
       <FontAwesomeIcon
         icon={faTrashCan}
-        style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
+        style={{ width: "14px", color: "#ccd1d0", marginLeft: "10px" }}
       />
     </>
   );

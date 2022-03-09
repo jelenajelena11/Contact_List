@@ -22,4 +22,7 @@ export const Tag = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;

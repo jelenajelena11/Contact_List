@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Contact } from "../components/contacts/Contact";
 import contacts from "../mock/db.json";
 
 export function useData() {
@@ -10,10 +8,4 @@ export function useData() {
     }
   }
   return contacts;
-}
-
-export function useTest(contacts: Contact[]) {
-  const [newContacts, setNewContacts] = useState<Contact[]>([]);
-  setNewContacts(contacts);
-  return newContacts;
 }

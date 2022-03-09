@@ -11,7 +11,7 @@ export default function New() {
         <meta name="description" content="Browse a contact" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      {/* <Header /> */}
       <NewContact />
     </>
   );

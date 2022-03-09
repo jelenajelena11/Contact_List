@@ -1,35 +1,35 @@
 import { ContactProps } from "../contacts/Contact";
-import Header from "../layout/header/Header";
-import {
-  ContactDetailsContainer,
-  DetailsContainer,
-  InfoWrapper,
-  LeftWrapper,
-  Right,
-  InfoLabel,
-  PhoneList,
-  LabelValue,
-} from "../contactItemDetails/ContactDetails.styled";
-import EditButton from "../ui/button/edit/EditButton";
-import FavouriteButton from "../ui/button/favourite/FavouriteButton";
-import Link from "next/link";
-import { Phone } from "../contacts/Contact";
-import {
-  faArrowTurnUp,
-  faEnvelope,
-  faPerson,
-  faPhone,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowTurnUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BackBtn } from "../newContact/NewContact.styled";
+import Link from "next/link";
+import AddNumber from "../ui/icons/AddNumber";
+import EmailIcon from "../ui/icons/EmailIcon";
+import User from "../ui/icons/User";
+import CloseCircle from "../ui/icons/CloseCircle";
+import PhoneIcon from "../ui/icons/PhoneIcon";
+import {
+  ContactFormContainer,
+  UploadDiv,
+  NewContactForm,
+  BackBtn,
+  FormLabel,
+  ContactInput,
+  ContactInputsWrapper,
+  EmailText,
+  ContactInputNew,
+  NumberWrapper,
+  NumberText,
+  ButtonWrapper,
+  BtnSave,
+  BtnCancel,
+} from "../../styles/common/commonAuth.styled";
 import DeleteButton from "../ui/button/delete/DeleteButton";
 
 export default function EditContactItem({ contact }: ContactProps) {
+  const handleChange = () => {};
   return (
     <>
-      <Header />
-      <ContactDetailsContainer>
+      {/* <ContactDetailsContainer>
         <img
           src={contact.profilePhoto}
           style={{
@@ -102,7 +102,83 @@ export default function EditContactItem({ contact }: ContactProps) {
           <button>Cancel</button>
           <button>Save</button>
         </div>
-      </ContactDetailsContainer>
+      </ContactDetailsContainer> */}
+      <ContactFormContainer>
+        <UploadDiv>
+          <img src={contact.profilePhoto}></img>
+        </UploadDiv>
+        <NewContactForm>
+          <Link href="/">
+            <BackBtn>
+              <FontAwesomeIcon
+                icon={faArrowTurnUp}
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  transform: "rotateZ(-90deg)",
+                  color: "#c1c1c1",
+                  float: "left",
+                }}
+              />
+            </BackBtn>
+          </Link>
+          Delete
+          <DeleteButton />
+          <FormLabel>
+            <User />
+            <EmailText>full name</EmailText>
+          </FormLabel>
+          <ContactInput
+            readOnly
+            type="text"
+            name="fullName"
+            onChange={handleChange}
+            placeholder="Full name"
+          />
+          <FormLabel>
+            <EmailIcon />
+            <EmailText>email</EmailText>
+          </FormLabel>
+          <ContactInput
+            readOnly
+            type="text"
+            name="email"
+            onChange={handleChange}
+            placeholder="Email"
+          />
+          <FormLabel>
+            <PhoneIcon />
+            <EmailText>numbers</EmailText>
+          </FormLabel>
+          <ContactInputsWrapper>
+            <ContactInputNew
+              readOnly
+              type="text"
+              name="number"
+              onChange={handleChange}
+              placeholder="Number"
+            />
+            <ContactInputNew
+              readOnly
+              type="text"
+              name="number"
+              onChange={handleChange}
+              placeholder="Cell"
+            />
+            <CloseCircle />
+          </ContactInputsWrapper>
+          <NumberWrapper>
+            <AddNumber />
+            <NumberText>Add number</NumberText>
+          </NumberWrapper>
+          <ButtonWrapper>
+            <BtnCancel>
+              <Link href="/">Cancel</Link>
+            </BtnCancel>
+            <BtnSave type="submit">Save</BtnSave>
+          </ButtonWrapper>
+        </NewContactForm>
+      </ContactFormContainer>
       )
     </>
   );

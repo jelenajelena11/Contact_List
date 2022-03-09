@@ -36,9 +36,6 @@ export const ListItem = styled.div`
   justify-content: center;
   min-width: 150px;
   color: ${theme.colors.blueGray};
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 export const ContactIcons = styled.div`
