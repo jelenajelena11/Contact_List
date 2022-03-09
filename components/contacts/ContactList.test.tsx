@@ -3,6 +3,6 @@ import React from "react";
 
 describe("", () => {
   it("", () => {
-    <ContactList />;
+    <ContactList contacts={[]} />;
   });
 });

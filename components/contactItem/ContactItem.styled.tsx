@@ -9,6 +9,7 @@ export const ContactItemWrapper = styled.div`
   width: 14vw;
   height: 16vh;
   margin: 0.4em;
+  min-width: 150px;
   padding: 1em;
 `;
 
@@ -33,6 +34,7 @@ export const ListItem = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 150px;
   color: ${theme.colors.blueGray};
   &:hover {
     cursor: pointer;

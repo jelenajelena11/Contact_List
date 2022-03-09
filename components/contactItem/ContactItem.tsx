@@ -29,7 +29,7 @@ export default function ContactItem({
         <ContactIcons>
           <FavouriteButton />
           <ButtonDiv>
-            <Link href="/editContact/[id]">
+            <Link href={`/editContact/${id}`}>
               <DeleteSpan onClick={() => setInEditMode(true)}>
                 <EditButton />
               </DeleteSpan>
@@ -50,6 +50,7 @@ export default function ContactItem({
         <DeleteItemDialog
           contactId={id}
           open={open}
+          setOpen={setOpen}
           onClose={() => setOpen(false)}
         />
       )}

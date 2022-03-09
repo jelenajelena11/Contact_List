@@ -40,5 +40,7 @@ export const theme = {
     lighterBlue: "#e1e1e1",
     blueLine: "#96D0D6",
     strongGreen: "#bde1e5",
+    colorGray: "#e2e6e6",
+    darkerTurquoise: "#56b4bc",
   },
 };
