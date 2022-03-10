@@ -17,10 +17,6 @@ export default function ContactList({ contacts }: ContactsList) {
   };
 
   useEffect(() => {
-    if (!JSON.parse(localStorage.getItem("contactList") || "")) {
-      setNewContacts(contacts);
-    }
-    contacts = JSON.parse(localStorage.getItem("contactList") || "");
     setNewContacts(JSON.parse(localStorage.getItem("contactList") || ""));
   }, []);
   return (
@@ -40,6 +36,7 @@ export default function ContactList({ contacts }: ContactsList) {
         </ListItem>
         {newContacts
           .filter((contact: Contact) => {
+            //create new custom hook
             if (searchTerm === "") {
               return contact;
             } else if (

@@ -1,12 +1,14 @@
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 
-export default function DeleteButton() {
+export default function DeleteButton({ onClick }: any) {
   return (
     <>
       <FontAwesomeIcon
         icon={faTrashCan}
-        style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
+        onClick={onClick}
+        style={{ width: "14px", color: "#ccd1d0", marginLeft: "10px" }}
       />
     </>
   );

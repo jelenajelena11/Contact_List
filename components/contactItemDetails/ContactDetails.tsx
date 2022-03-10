@@ -1,6 +1,5 @@
 import Header from "../layout/header/Header";
 import React from "react";
-import { BackBtn } from "../newContact/NewContact.styled";
 import {
   faArrowTurnUp,
   faEnvelope,
@@ -17,11 +16,16 @@ import {
   InfoLabel,
   PhoneList,
   LabelValue,
+  EditBtn,
+  ImageWrapper,
 } from "./ContactDetails.styled";
 import EditButton from "../ui/button/edit/EditButton";
 import FavouriteButton from "../ui/button/favourite/FavouriteButton";
 import Link from "next/link";
 import { Contact, Phone } from "../contacts/Contact";
+import { BackButton } from "../../styles/common/commonAuth.styled";
+import EmailIcon from "../ui/icons/EmailIcon";
+import PhoneIcon from "../ui/icons/PhoneIcon";
 
 export default function ContactDetails({
   id,
@@ -33,20 +37,13 @@ export default function ContactDetails({
 }: Contact) {
   return (
     <>
-      <Header />
       <ContactDetailsContainer>
-        <img
-          src={profilePhoto}
-          style={{
-            borderRadius: "50%",
-            marginRight: "2%",
-          }}
-        />
+        <ImageWrapper src={profilePhoto} />
         <Right>
           <DetailsContainer>
             <LeftWrapper>
               <Link href="/">
-                <BackBtn>
+                <BackButton>
                   <FontAwesomeIcon
                     icon={faArrowTurnUp}
                     style={{
@@ -57,7 +54,7 @@ export default function ContactDetails({
                       float: "left",
                     }}
                   />
-                </BackBtn>
+                </BackButton>
               </Link>
               <NameHolder>
                 {firstName} {lastName}
@@ -65,31 +62,32 @@ export default function ContactDetails({
             </LeftWrapper>
             <LeftWrapper>
               <FavouriteButton />
-              <EditButton />
+              <Link href={`/editContact/${id}`}>
+                <EditBtn>
+                  <EditButton />
+                </EditBtn>
+              </Link>
             </LeftWrapper>
           </DetailsContainer>
 
           <InfoWrapper>
             <InfoLabel>
-              <FontAwesomeIcon
-                icon={faEnvelope}
-                style={{ width: "16px", height: "16px" }}
-              />
+              <EmailIcon />
               email
             </InfoLabel>
             <LabelValue>{email}</LabelValue>
           </InfoWrapper>
           <InfoWrapper>
             <InfoLabel>
-              <FontAwesomeIcon
-                icon={faPhone}
-                style={{ width: "16px", height: "16px" }}
-              />
+              <PhoneIcon />
               numbers
             </InfoLabel>
             <PhoneList>
               {phones.map((phone: Phone) => {
-                <PhoneList>{phone}</PhoneList>;
+                <>
+                  <p>phone</p>
+                  <PhoneList>{phone.name}</PhoneList>
+                </>;
               })}
             </PhoneList>
           </InfoWrapper>

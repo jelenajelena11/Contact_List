@@ -9,9 +9,13 @@ export const ButtonContainer = styled.div`
 export const Button = styled.button`
   background-color: transparent;
   border: none;
-  font-size: 18px;
+  font-size: 20px;
   margin: 2%;
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const BtnLine = styled.span`
+  border-left: 2px solid ${theme.colors.lightGray};
 `;

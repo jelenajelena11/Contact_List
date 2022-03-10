@@ -1,21 +1,31 @@
 import { Formik } from "formik";
 import {
-  ContactFormContainer,
-  ContactInput,
-  NewContactForm,
-  ButtonWrapper,
-  BtnSave,
-  BtnCancel,
-  UploadDiv,
-  BackBtn,
-  FormLabel,
-} from "./NewContact.styled";
-import {
   faArrowTurnUp,
   faArrowUpFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import AddNumber from "../ui/icons/AddNumber";
+import EmailIcon from "../ui/icons/EmailIcon";
+import User from "../ui/icons/User";
+import CloseCircle from "../ui/icons/CloseCircle";
+import PhoneIcon from "../ui/icons/PhoneIcon";
+import {
+  ContactFormContainer,
+  UploadDiv,
+  NewContactForm,
+  BackBtn,
+  FormLabel,
+  ContactInputsWrapper,
+  EmailText,
+  ContactInputNew,
+  ContactInput,
+  NumberWrapper,
+  NumberText,
+  ButtonWrapper,
+  BtnSave,
+  BtnCancel,
+} from "../../styles/common/commonAuth.styled";
 
 export default function NewContact() {
   return (
@@ -34,10 +44,18 @@ export default function NewContact() {
         {({ handleSubmit, values, handleChange, errors, touched }) => (
           <ContactFormContainer>
             <UploadDiv>
-              <FontAwesomeIcon
-                icon={faArrowUpFromBracket}
-                style={{ width: "16px", height: "16px", color: "white" }}
-              />
+              <label htmlFor="file-input">
+                <FontAwesomeIcon
+                  icon={faArrowUpFromBracket}
+                  style={{
+                    width: "16px",
+                    height: "16px",
+                    color: "white",
+                    cursor: "pointer",
+                  }}
+                />
+              </label>
+              <input type="file" />
             </UploadDiv>
             <NewContactForm onSubmit={handleSubmit}>
               <Link href="/">
@@ -54,30 +72,21 @@ export default function NewContact() {
                   />
                 </BackBtn>
               </Link>
-              <FormLabel>Full name</FormLabel>
+              <FormLabel>
+                <User />
+                <EmailText>full name</EmailText>
+              </FormLabel>
               <ContactInput
                 type="text"
                 value={values.firstName}
-                name="firstName"
+                name="fullName"
                 onChange={handleChange}
-                placeholder="First name"
+                placeholder="Full name"
               />
-              <hr />
-              <FormLabel>Lastname</FormLabel>
-              <ContactInput
-                type="text"
-                value={values.lastName}
-                onChange={handleChange}
-                name="lastname"
-                placeholder="Last name"
-              />
-              <ContactInput
-                type="profile photo"
-                value={values.profilePhoto}
-                name="profile photo"
-                onChange={handleChange}
-                placeholder="Profile photo"
-              />
+              <FormLabel>
+                <EmailIcon />
+                <EmailText>email</EmailText>
+              </FormLabel>
               <ContactInput
                 type="text"
                 value={values.email}
@@ -85,8 +94,35 @@ export default function NewContact() {
                 onChange={handleChange}
                 placeholder="Email"
               />
+              <FormLabel>
+                <PhoneIcon />
+                <EmailText>numbers</EmailText>
+              </FormLabel>
+              <ContactInputsWrapper>
+                <ContactInputNew
+                  type="text"
+                  value={values.phones}
+                  name="number"
+                  onChange={handleChange}
+                  placeholder="Number"
+                />
+                <ContactInputNew
+                  type="text"
+                  value={values.phones}
+                  name="number"
+                  onChange={handleChange}
+                  placeholder="Cell"
+                />
+                <CloseCircle />
+              </ContactInputsWrapper>
+              <NumberWrapper>
+                <AddNumber />
+                <NumberText>Add number</NumberText>
+              </NumberWrapper>
               <ButtonWrapper>
-                <BtnCancel>Cancel</BtnCancel>
+                <BtnCancel>
+                  <Link href="/">Cancel</Link>
+                </BtnCancel>
                 <BtnSave type="submit">Save</BtnSave>
               </ButtonWrapper>
             </NewContactForm>

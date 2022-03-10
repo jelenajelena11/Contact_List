@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, ButtonContainer } from "./ListContainerButton.styled";
+import { BtnLine, Button, ButtonContainer } from "./ListContainerButton.styled";
 import { Line } from "../../contacts/ContactList.styled";
 import Link from "next/link";
 export default function ListContainerButton() {
@@ -16,6 +16,7 @@ export default function ListContainerButton() {
         <Button onClick={setColor} style={{ color: textColor }}>
           <Link href="/">All contacts</Link>
         </Button>
+        <BtnLine />
         <Button onClick={setColor} style={{ color: textColor }}>
           <Link href="/favourites">Favourites</Link>
         </Button>

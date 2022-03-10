@@ -21,6 +21,7 @@ export default function SearchInput({ setSearchTerm }: any) {
           bottom: "47%",
           display: "block",
           left: "28%",
+          color: "rgb(204, 209, 208)",
         }}
       />
     </InputWrapper>

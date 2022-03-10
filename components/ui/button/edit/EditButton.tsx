@@ -6,7 +6,7 @@ export default function EditButton() {
     <>
       <FontAwesomeIcon
         icon={faPen}
-        style={{ width: "12px", height: "12px", color: "#ccd1d0" }}
+        style={{ width: "14px", color: "#ccd1d0" }}
       />
     </>
   );
