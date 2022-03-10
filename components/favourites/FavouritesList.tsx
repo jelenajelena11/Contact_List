@@ -1,45 +1,50 @@
 import ContactItem from "../contactItem/ContactItem";
-import { Contact, ListOfFavourites } from "../contacts/Contact";
+import { ListOfFavourites } from "../contacts/Contact";
 import React, { useState } from "react";
 import { ListWrapper } from "../contacts/ContactList.styled";
 import SearchInput from "../ui/searchInput/SearchInput";
+import { useFilterData } from "../ui/searchInput/useSearchTerm";
 
 export default function FavouritesList({ favourites }: ListOfFavourites) {
   const [searchTerm, setSearchTerm] = useState("");
   const get_data = (data: any) => {
     setSearchTerm(data);
   };
+  const result = useFilterData(favourites, searchTerm);
 
   return (
     <>
       <SearchInput setSearchTerm={get_data} />
       <ListWrapper>
-        {favourites
-          .filter((favourite: Contact) => {
-            if (searchTerm === "") {
-              return favourite;
-            } else if (
-              favourite.firstName
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
-            ) {
-              return favourite;
-            }
-          })
-          .map((f) => {
-            return (
-              <ContactItem
-                key={f.id}
-                id={f.id}
-                firstName={f.firstName}
-                email={f.email}
-                lastName={f.lastName}
-                profilePhoto={f.profilePhoto}
-                favourite={false}
-                phones={f.phones}
-              />
-            );
-          })}
+        {result
+          ? result.map((favourite) => {
+              return (
+                <ContactItem
+                  key={favourite.id}
+                  id={favourite.id}
+                  firstName={favourite.firstName}
+                  lastName={favourite.lastName}
+                  profilePhoto={favourite.profilePhoto}
+                  email={favourite.email}
+                  favourite={false}
+                  phones={favourite.phones}
+                />
+              );
+            })
+          : favourites.map((favourite) => {
+              return (
+                <ContactItem
+                  key={favourite.id}
+                  id={favourite.id}
+                  firstName={favourite.firstName}
+                  lastName={favourite.lastName}
+                  profilePhoto={favourite.profilePhoto}
+                  email={favourite.email}
+                  favourite={false}
+                  phones={favourite.phones}
+                />
+              );
+            })}
       </ListWrapper>
     </>
   );
