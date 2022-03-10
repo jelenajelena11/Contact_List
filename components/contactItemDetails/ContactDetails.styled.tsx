@@ -87,4 +87,8 @@ export const PhoneList = styled.p``;
 
 export const EditBtn = styled.span`
   margin-left: 18px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
