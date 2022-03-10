@@ -9,126 +9,67 @@ import CloseCircle from "../ui/icons/CloseCircle";
 import PhoneIcon from "../ui/icons/PhoneIcon";
 import {
   ContactFormContainer,
-  UploadDiv,
   NewContactForm,
   BackBtn,
   FormLabel,
-  ContactInput,
   ContactInputsWrapper,
   EmailText,
-  ContactInputNew,
   NumberWrapper,
   NumberText,
   ButtonWrapper,
   BtnSave,
   BtnCancel,
+  ImageEdit,
+  ImgSpan,
 } from "../../styles/common/commonAuth.styled";
 import DeleteButton from "../ui/button/delete/DeleteButton";
+import CloseIcon from "../ui/icons/CloseIcon";
+import {
+  FirstRowSpan,
+  FirstRowRight,
+  EditInput,
+  EditContactInput,
+} from "./EditContactItem.styled";
+import DeleteItemDialog from "../ui/dialog/DeleteItemDialog";
+import useDialog from "../ui/dialog/useDialog";
 
 export default function EditContactItem({ contact }: ContactProps) {
   const handleChange = () => {};
+  const { isShowing, toggle } = useDialog();
+
   return (
     <>
-      {/* <ContactDetailsContainer>
-        <img
-          src={contact.profilePhoto}
-          style={{
-            borderRadius: "50%",
-            marginRight: "2%",
-          }}
-        />
-        <Right>
-          <DetailsContainer>
-            <LeftWrapper>
-              <Link href="/">
-                <BackBtn>
-                  <FontAwesomeIcon
-                    icon={faArrowTurnUp}
-                    style={{
-                      width: "16px",
-                      height: "16px",
-                      transform: "rotateZ(-90deg)",
-                      color: "#c1c1c1",
-                      float: "left",
-                    }}
-                  />
-                </BackBtn>
-              </Link>
-            </LeftWrapper>
-            <LeftWrapper>
+      <ContactFormContainer>
+        <ImageEdit src={contact.profilePhoto} />
+        <ImgSpan>
+          <CloseIcon />
+        </ImgSpan>
+        <NewContactForm>
+          <FirstRowSpan>
+            <Link href="/">
+              <BackBtn>
+                <FontAwesomeIcon
+                  icon={faArrowTurnUp}
+                  style={{
+                    width: "16px",
+                    height: "16px",
+                    transform: "rotateZ(-90deg)",
+                    color: "#c1c1c1",
+                    float: "left",
+                  }}
+                />
+              </BackBtn>
+            </Link>
+            <FirstRowRight onClick={toggle}>
               Delete
               <DeleteButton />
-            </LeftWrapper>
-          </DetailsContainer>
-
-          <InfoWrapper>
-            <InfoLabel>
-              <FontAwesomeIcon
-                icon={faPerson}
-                style={{ width: "16px", height: "16px" }}
-              />
-              full name
-            </InfoLabel>
-            <input readOnly value={contact.firstName && contact.lastName} />
-            <InfoLabel>
-              <FontAwesomeIcon
-                icon={faEnvelope}
-                style={{ width: "16px", height: "16px" }}
-              />
-              email
-            </InfoLabel>
-            <input value={contact.email} />
-          </InfoWrapper>
-          <InfoWrapper>
-            <InfoLabel>
-              <FontAwesomeIcon
-                icon={faPhone}
-                style={{ width: "16px", height: "16px" }}
-              />
-              numbers
-            </InfoLabel>
-            <PhoneList>
-              {contact.phones.map((phone: Phone) => {
-                <PhoneList>{phone}</PhoneList>;
-              })}
-            </PhoneList>
-          </InfoWrapper>
-          <div>
-            <FontAwesomeIcon icon={faPlus} />
-            <p>add number</p>
-          </div>
-        </Right>
-        <div>
-          <button>Cancel</button>
-          <button>Save</button>
-        </div>
-      </ContactDetailsContainer> */}
-      <ContactFormContainer>
-        <UploadDiv>
-          <img src={contact.profilePhoto}></img>
-        </UploadDiv>
-        <NewContactForm>
-          <Link href="/">
-            <BackBtn>
-              <FontAwesomeIcon
-                icon={faArrowTurnUp}
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  transform: "rotateZ(-90deg)",
-                  color: "#c1c1c1",
-                  float: "left",
-                }}
-              />
-            </BackBtn>
-          </Link>
-          Delete
-          <DeleteButton />
+            </FirstRowRight>
+          </FirstRowSpan>
           <FormLabel>
             <User />
             <EmailText>full name</EmailText>
           </FormLabel>
-          <ContactInput
+          <EditInput
             readOnly
             type="text"
             name="fullName"
@@ -139,7 +80,7 @@ export default function EditContactItem({ contact }: ContactProps) {
             <EmailIcon />
             <EmailText>email</EmailText>
           </FormLabel>
-          <ContactInput
+          <EditInput
             readOnly
             type="text"
             name="email"
@@ -151,14 +92,14 @@ export default function EditContactItem({ contact }: ContactProps) {
             <EmailText>numbers</EmailText>
           </FormLabel>
           <ContactInputsWrapper>
-            <ContactInputNew
+            <EditContactInput
               readOnly
               type="text"
               name="number"
               onChange={handleChange}
               placeholder="Number"
             />
-            <ContactInputNew
+            <EditContactInput
               readOnly
               type="text"
               name="number"
@@ -180,6 +121,11 @@ export default function EditContactItem({ contact }: ContactProps) {
         </NewContactForm>
       </ContactFormContainer>
       )
+      <DeleteItemDialog
+        contactId={contact.id}
+        isShowing={isShowing}
+        onClose={toggle}
+      />
     </>
   );
 }

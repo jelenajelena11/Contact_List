@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DeleteItemDialog from "../ui/dialog/DeleteItemDialog";
 import {
   ContactItemWrapper,
@@ -13,6 +13,7 @@ import EditButton from "../ui/button/edit/EditButton";
 import FavouriteButton from "../ui/button/favourite/FavouriteButton";
 import DeleteButton from "../ui/button/delete/DeleteButton";
 import { Contact } from "../contacts/Contact";
+import useDialog from "../ui/dialog/useDialog";
 
 export default function ContactItem({
   id,
@@ -20,8 +21,7 @@ export default function ContactItem({
   lastName,
   profilePhoto,
 }: Contact) {
-  const [open, setOpen] = React.useState(false);
-  const [inEditMode, setInEditMode] = useState(false);
+  const { isShowing, toggle } = useDialog();
 
   return (
     <>
@@ -30,12 +30,12 @@ export default function ContactItem({
           <FavouriteButton />
           <ButtonDiv>
             <Link href={`/editContact/${id}`}>
-              <DeleteSpan onClick={() => setInEditMode(true)}>
+              <DeleteSpan>
                 <EditButton />
               </DeleteSpan>
             </Link>
-            <DeleteSpan onClick={() => setOpen(true)}>
-              <DeleteButton />
+            <DeleteSpan>
+              <DeleteButton onClick={toggle} />
             </DeleteSpan>
           </ButtonDiv>
         </ContactIcons>
@@ -46,14 +46,7 @@ export default function ContactItem({
           </Item>
         </Link>
       </ContactItemWrapper>
-      {open && (
-        <DeleteItemDialog
-          contactId={id}
-          open={open}
-          setOpen={setOpen}
-          onClose={() => setOpen(false)}
-        />
-      )}
+      <DeleteItemDialog contactId={id} isShowing={isShowing} onClose={toggle} />
     </>
   );
 }

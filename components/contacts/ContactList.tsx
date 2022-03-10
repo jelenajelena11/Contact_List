@@ -17,10 +17,6 @@ export default function ContactList({ contacts }: ContactsList) {
   };
 
   useEffect(() => {
-    // if (!JSON.parse(localStorage.getItem("contactList") || "")) {
-    //   setNewContacts(contacts);
-    // }
-    // console.log("jfnfjnfjdn");
     setNewContacts(JSON.parse(localStorage.getItem("contactList") || ""));
   }, []);
   return (

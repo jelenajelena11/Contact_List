@@ -145,3 +145,19 @@ export const BtnSave = styled(Btn)`
 export const BtnCancel = styled(Btn)`
   background-color: ${theme.colors.lighterGray};
 `;
+
+export const ImageEdit = styled.img`
+  padding: 0 3em;
+  border-radius: 50%;
+  align-self: baseline;
+  position: relative;
+  filter: contrast(20%);
+`;
+
+export const ImgSpan = styled.span`
+  display: block;
+  position: absolute;
+  color: ${theme.colors.white};
+  left: 29.3%;
+  bottom: 76.6%;
+`;

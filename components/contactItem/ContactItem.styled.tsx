@@ -7,16 +7,18 @@ export const ContactItemWrapper = styled.div`
   border: 1px solid ${theme.colors.lightGray};
   border-radius: 3px;
   width: 14vw;
-  height: 16vh;
+  height: fit-content;
   margin: 0.4em;
   min-width: 150px;
   padding: 1em;
+  min-height: 150px;
 `;
 
 export const Item = styled.div`
   margin: 1em auto;
   font-size: 18px;
   color: ${theme.colors.itemGray};
+  text-align: center;
   &:hover {
     cursor: pointer;
   }
@@ -28,13 +30,13 @@ export const ListItem = styled.div`
   border-radius: 3px;
   padding: 2em;
   width: 14vw;
-  height: 16vh;
   margin: 0.4em;
   border-style: dashed;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-width: 150px;
+  min-height: 150px;
   color: ${theme.colors.blueGray};
 `;
 
@@ -54,7 +56,11 @@ export const ContactImage = styled.img`
   max-width: 28%;
 `;
 
-export const DeleteSpan = styled.span``;
+export const DeleteSpan = styled.span`
+  :hover {
+    cursor: pointer;
+  }
+`;
 export const ButtonDiv = styled.div`
   display: flex;
 `;

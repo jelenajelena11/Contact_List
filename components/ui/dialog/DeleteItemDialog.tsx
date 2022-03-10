@@ -11,10 +11,9 @@ import {
 
 export default function DeleteItemDialog({
   onClose,
-  selectedValue,
-  open,
   contactId,
   setOpen,
+  isShowing,
 }: any) {
   function deleteContact(contactId: number) {
     const list = JSON.parse(localStorage.getItem("contactList") || "");
@@ -25,7 +24,7 @@ export default function DeleteItemDialog({
   return (
     <Dialog
       onClose={() => {}}
-      open={open}
+      open={isShowing}
       PaperProps={{ sx: { width: "44vw" } }}
     >
       <DialogWrapper>

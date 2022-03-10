@@ -35,7 +35,6 @@ export default function ContactDetails({
   email,
   phones,
 }: Contact) {
-  console.log(phones);
   return (
     <>
       <ContactDetailsContainer>

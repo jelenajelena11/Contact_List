@@ -44,10 +44,6 @@ export default function NewContact() {
         {({ handleSubmit, values, handleChange, errors, touched }) => (
           <ContactFormContainer>
             <UploadDiv>
-              {/* <FontAwesomeIcon
-                icon={faArrowUpFromBracket}
-                style={{ width: "16px", height: "16px", color: "white" }}
-              /> */}
               <label htmlFor="file-input">
                 <FontAwesomeIcon
                   icon={faArrowUpFromBracket}
