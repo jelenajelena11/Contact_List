@@ -1,4 +1,3 @@
-import { Formik } from "formik";
 import Link from "next/link";
 import AddNumber from "../ui/icons/AddNumber";
 import EmailIcon from "../ui/icons/EmailIcon";

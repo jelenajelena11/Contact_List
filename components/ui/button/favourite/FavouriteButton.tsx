@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as farHeart } from "@fortawesome/free-regular-svg-icons";
-import { useEffect, useState } from "react";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { fetchData } from "../../../../mock/fetchData";
 
 export default function FavouriteButton({
   favourite,
