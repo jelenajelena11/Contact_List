@@ -1,11 +1,4 @@
-import Header from "../layout/header/Header";
 import React from "react";
-import {
-  faArrowTurnUp,
-  faEnvelope,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ContactDetailsContainer,
   DetailsContainer,
@@ -14,7 +7,6 @@ import {
   NameHolder,
   Right,
   InfoLabel,
-  PhoneList,
   LabelValue,
   EditBtn,
   ImageWrapper,
@@ -26,6 +18,7 @@ import { Contact, Phone } from "../contacts/Contact";
 import { BackButton } from "../../styles/common/commonAuth.styled";
 import EmailIcon from "../ui/icons/EmailIcon";
 import PhoneIcon from "../ui/icons/PhoneIcon";
+import ArrowTurnUp from "../ui/icons/ArrowTurnUp";
 
 export default function ContactDetails({
   id,
@@ -34,6 +27,7 @@ export default function ContactDetails({
   profilePhoto,
   email,
   phones,
+  favourite,
 }: Contact) {
   return (
     <>
@@ -44,16 +38,7 @@ export default function ContactDetails({
             <LeftWrapper>
               <Link href="/">
                 <BackButton>
-                  <FontAwesomeIcon
-                    icon={faArrowTurnUp}
-                    style={{
-                      width: "16px",
-                      height: "16px",
-                      transform: "rotateZ(-90deg)",
-                      color: "#c1c1c1",
-                      float: "left",
-                    }}
-                  />
+                  <ArrowTurnUp />
                 </BackButton>
               </Link>
               <NameHolder>
@@ -61,7 +46,7 @@ export default function ContactDetails({
               </NameHolder>
             </LeftWrapper>
             <LeftWrapper>
-              <FavouriteButton />
+              <FavouriteButton favourite={favourite} />
               <Link href={`/editContact/${id}`}>
                 <EditBtn>
                   <EditButton />
@@ -82,18 +67,17 @@ export default function ContactDetails({
               <PhoneIcon />
               numbers
             </InfoLabel>
-            <PhoneList>
-              {phones.map((phone: Phone) => {
+            <LabelValue>
+              {phones.map((phone: Phone) => (
                 <>
-                  <p>phone</p>
-                  <PhoneList>{phone.name}</PhoneList>
-                </>;
-              })}
-            </PhoneList>
+                  <LabelValue>{phone.name}</LabelValue>
+                  <LabelValue>{phone.label}</LabelValue>
+                </>
+              ))}
+            </LabelValue>
           </InfoWrapper>
         </Right>
       </ContactDetailsContainer>
-      )
     </>
   );
 }

@@ -26,8 +26,9 @@ export default function FavouritesList({ favourites }: ListOfFavourites) {
                   lastName={favourite.lastName}
                   profilePhoto={favourite.profilePhoto}
                   email={favourite.email}
-                  favourite={false}
+                  favourite={favourite.favourite}
                   phones={favourite.phones}
+                  onFavoriteClick={() => {}}
                 />
               );
             })
@@ -42,6 +43,7 @@ export default function FavouritesList({ favourites }: ListOfFavourites) {
                   email={favourite.email}
                   favourite={false}
                   phones={favourite.phones}
+                  onFavoriteClick={() => {}}
                 />
               );
             })}

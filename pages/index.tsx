@@ -3,13 +3,19 @@ import ContactList from "../components/contacts/ContactList";
 import React, { useEffect, useState } from "react";
 import ListContainerButton from "../components/ui/button/ListContainerButton";
 import { Contact, ContactsList } from "../components/contacts/Contact";
-import { useData } from "../mock/useData";
+import { fetchData } from "../mock/fetchData";
 
 const Home = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   useEffect(() => {
-    setContacts(useData());
+    const data = fetchData() as Contact[];
+    setContacts(data);
   }, []);
+
+  const onDataUpdated = () => {
+    const data = fetchData() as Contact[];
+    setContacts(data);
+  };
 
   return (
     <>
@@ -19,7 +25,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ListContainerButton />
-      <ContactList contacts={contacts} />
+      <ContactList contacts={contacts} onDataUpdated={onDataUpdated} />
     </>
   );
 };

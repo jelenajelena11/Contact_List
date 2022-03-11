@@ -12,6 +12,9 @@ export const ContactItemWrapper = styled.div`
   min-width: 150px;
   padding: 1em;
   min-height: 150px;
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `;
 
 export const Item = styled.div`
@@ -38,6 +41,9 @@ export const ListItem = styled.div`
   min-width: 150px;
   min-height: 150px;
   color: ${theme.colors.blueGray};
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `;
 
 export const ContactIcons = styled.div`
@@ -63,4 +69,10 @@ export const DeleteSpan = styled.span`
 `;
 export const ButtonDiv = styled.div`
   display: flex;
+`;
+
+export const LinkWrap = styled.span`
+  &:hover {
+    cursor: pointer;
+  }
 `;

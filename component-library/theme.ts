@@ -19,7 +19,6 @@ export const theme = {
           `,
   },
   fontWeights,
-  shadows: {},
   colors: {
     white: "#FFF",
     black: "#000000",
@@ -42,5 +41,10 @@ export const theme = {
     strongGreen: "#bde1e5",
     colorGray: "#e2e6e6",
     darkerTurquoise: "#56b4bc",
+    loopGray: "#d7d7d7",
+    lightTurquoise: "#6cc6cb",
+    headerGradientLightBlue: "#a0d8dc",
+    headerGradientDarkBlue: "#72bdc4",
+    labelBlue: "#7ac4cb",
   },
 };

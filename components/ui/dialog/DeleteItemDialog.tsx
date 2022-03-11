@@ -19,7 +19,8 @@ export default function DeleteItemDialog({
     const list = JSON.parse(localStorage.getItem("contactList") || "");
     const newList = list.filter((item: any) => item.id !== contactId);
     localStorage.setItem("contactList", JSON.stringify(newList));
-    setOpen(false);
+    window.location.reload();
+    onClose(false);
   }
   return (
     <Dialog

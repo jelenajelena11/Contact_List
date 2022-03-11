@@ -23,12 +23,16 @@ export const FirstRowRight = styled.span`
 `;
 
 export const EditInput = styled(ContactInput)`
+  color: ${theme.colors.gray};
   :focus {
     outline: none;
   }
 `;
 
 export const EditContactInput = styled(ContactInputNew)`
+  color: ${theme.colors.gray};
+  margin-right: 11px;
+  margin-bottom: 15px;
   :focus {
     outline: none;
   }

@@ -1,6 +1,5 @@
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputField, InputWrapper } from "./SearchInput.styled";
+import SearchIcon from "../icons/SearchIcon";
+import { IconSpan, InputField, InputWrapper } from "./SearchInput.styled";
 
 export default function SearchInput({ setSearchTerm }: any) {
   return (
@@ -11,18 +10,9 @@ export default function SearchInput({ setSearchTerm }: any) {
           setSearchTerm(e.target.value);
         }}
       />
-      <FontAwesomeIcon
-        icon={faSearch}
-        style={{
-          width: "12px",
-          height: "12px",
-          color: "gray",
-          position: "absolute",
-          bottom: "47%",
-          display: "block",
-          left: "28%",
-        }}
-      />
+      <IconSpan>
+        <SearchIcon />
+      </IconSpan>
     </InputWrapper>
   );
 }

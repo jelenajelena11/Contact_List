@@ -20,7 +20,6 @@ export const ContactFormContainer = styled.div`
   align-items: center;
   flex-direction: row;
   padding: 3em 0;
-
   @media (max-width: 425px) {
     flex-direction: column;
   }
@@ -32,11 +31,9 @@ export const UploadDiv = styled.div`
   border-radius: 50%;
   align-self: baseline;
   margin-right: 2%;
-
   > input {
     display: none;
   }
-
   @media (max-width: 425px) {
     margin: 0 auto;
   }
@@ -46,7 +43,6 @@ export const NewContactForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 40vw;
-
   @media (max-width: 425px) {
     width: 70vw;
   }
@@ -74,18 +70,20 @@ export const ContactInput = styled.input`
   border-radius: 5px;
   margin-bottom: 2em;
   width: 45%;
-
   ::placeholder {
     color: ${theme.colors.lightGray};
+  }
+  @media (max-width: 540px) {
+    width: 100%;
   }
 `;
 
 export const ContactInputsWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
-  @media (max-width: 425px) {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  @media (max-width: 540px) {
     flex-direction: column;
     margin: 0;
     align-items: flex-start;
@@ -97,9 +95,12 @@ export const ContactInputNew = styled.input`
   border: 1px solid ${theme.colors.lightGray};
   border-radius: 5px;
   width: 45%;
-
   ::placeholder {
     color: ${theme.colors.lightGray};
+  }
+  @media (max-width: 540px) {
+    width: 100%;
+    margin-bottom: 1em;
   }
 `;
 
@@ -120,8 +121,7 @@ export const ButtonWrapper = styled.div`
   justify-content: space-between;
   padding-top: 5em;
   width: 100%;
-
-  @media (max-width: 425px) {
+  @media (max-width: 542px) {
     flex-direction: column;
   }
 `;
@@ -132,11 +132,13 @@ export const Btn = styled.button`
   background-color: ${theme.colors.green};
   border-radius: 40px;
   color: white;
+  @media (max-width: 542px) {
+    margin-bottom: 1em;
+  }
 `;
 
 export const BtnSave = styled(Btn)`
   background-color: ${theme.colors.blue};
-
   @media (max-width: 425px) {
     margin-top: 0.7em;
   }
@@ -152,6 +154,9 @@ export const ImageEdit = styled.img`
   align-self: baseline;
   position: relative;
   filter: contrast(20%);
+  @media (max-width: 425px) {
+    margin: 0 auto;
+  }
 `;
 
 export const ImgSpan = styled.span`
@@ -160,4 +165,11 @@ export const ImgSpan = styled.span`
   color: ${theme.colors.white};
   left: 29.3%;
   bottom: 76.6%;
+`;
+
+export const UploadLabel = styled.label`
+  color: white;
+  &:hover {
+    cursor: pointer;
+  }
 `;
