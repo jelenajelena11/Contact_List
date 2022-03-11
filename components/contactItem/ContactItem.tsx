@@ -16,16 +16,14 @@ import DeleteButton from "../ui/button/delete/DeleteButton";
 import { Contact } from "../contacts/Contact";
 import useDialog from "../ui/dialog/useDialog";
 
-export default function ContactItem({
-  id,
-  firstName,
-  lastName,
-  profilePhoto,
-  favourite,
-  onFavoriteClick,
-}: Contact) {
-  const { isShowing, toggle } = useDialog();
+interface Props {
+  contact: Contact;
+  onFavoriteClick: (id: number) => void;
+}
 
+export default function ContactItem({ contact, onFavoriteClick }: Props) {
+  const { isShowing, toggle } = useDialog();
+  const { id, firstName, lastName, profilePhoto, favourite } = contact;
   return (
     <>
       <ContactItemWrapper>

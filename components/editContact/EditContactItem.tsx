@@ -30,8 +30,8 @@ import {
 } from "./EditContactItem.styled";
 import DeleteItemDialog from "../ui/dialog/DeleteItemDialog";
 import useDialog from "../ui/dialog/useDialog";
-import ArrowTurnUp from "../ui/icons/ArrowTurnUp";
 import { SyntheticEvent, useEffect, useState } from "react";
+import ArrowTurnUp from "../ui/icons/ArrowTurnUp";
 
 export default function EditContactItem(props: ContactProps) {
   const { contact } = props;

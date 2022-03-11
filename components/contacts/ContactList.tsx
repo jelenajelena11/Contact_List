@@ -46,13 +46,7 @@ export default function ContactList({ contacts, onDataUpdated }: ContactsList) {
               return (
                 <ContactItem
                   key={cont.id}
-                  id={cont.id}
-                  firstName={cont.firstName}
-                  lastName={cont.lastName}
-                  profilePhoto={cont.profilePhoto}
-                  email={cont.email}
-                  favourite={cont.favourite}
-                  phones={cont.phones}
+                  contact={cont}
                   onFavoriteClick={onFavoriteClick}
                 />
               );
@@ -61,13 +55,7 @@ export default function ContactList({ contacts, onDataUpdated }: ContactsList) {
               return (
                 <ContactItem
                   key={cont.id}
-                  id={cont.id}
-                  firstName={cont.firstName}
-                  lastName={cont.lastName}
-                  profilePhoto={cont.profilePhoto}
-                  email={cont.email}
-                  favourite={false}
-                  phones={cont.phones}
+                  contact={cont}
                   onFavoriteClick={onFavoriteClick}
                 />
               );

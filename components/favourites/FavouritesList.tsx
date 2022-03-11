@@ -21,13 +21,7 @@ export default function FavouritesList({ favourites }: ListOfFavourites) {
               return (
                 <ContactItem
                   key={favourite.id}
-                  id={favourite.id}
-                  firstName={favourite.firstName}
-                  lastName={favourite.lastName}
-                  profilePhoto={favourite.profilePhoto}
-                  email={favourite.email}
-                  favourite={favourite.favourite}
-                  phones={favourite.phones}
+                  contact={favourite}
                   onFavoriteClick={() => {}}
                 />
               );
@@ -36,13 +30,7 @@ export default function FavouritesList({ favourites }: ListOfFavourites) {
               return (
                 <ContactItem
                   key={favourite.id}
-                  id={favourite.id}
-                  firstName={favourite.firstName}
-                  lastName={favourite.lastName}
-                  profilePhoto={favourite.profilePhoto}
-                  email={favourite.email}
-                  favourite={false}
-                  phones={favourite.phones}
+                  contact={favourite}
                   onFavoriteClick={() => {}}
                 />
               );
