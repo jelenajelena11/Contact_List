@@ -15,7 +15,6 @@ export interface Contact {
   email: string;
   favourite: boolean;
   phones: Phone[];
-  onFavoriteClick: (id: number) => void;
 }
 
 export interface ContactProps {

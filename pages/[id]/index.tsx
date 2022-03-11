@@ -43,25 +43,8 @@ export default function ContactItemDetails() {
         email={contact.email}
         favourite={contact.favourite}
         phones={contact.phones}
+        onFavoriteClick={() => {}}
       />
     </>
   );
 }
-
-export const getStaticProps = async (context: any) => {
-  const allContacts = contacts.filter(
-    (c) => c.id.toString() === context.params.id
-  );
-  return {
-    props: {
-      allContacts: allContacts[0],
-    },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const paths = contacts.map((contact) => ({
-    params: { id: contact.id.toString() },
-  }));
-  return { paths, fallback: false };
-};
