@@ -1,11 +1,31 @@
-import { GetStaticProps } from "next";
 import Head from "next/head";
-import React from "react";
-import { ContactProps } from "../../components/contacts/Contact";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { Phone } from "../../components/contacts/Contact";
 import EditContactItem from "../../components/editContact/EditContactItem";
-import contacts from "../../mock/db.json";
+import { fetchData } from "../../mock/fetchData";
 
-export default function EditContact({ contact }: ContactProps) {
+export default function EditContact() {
+  const [passedContact, setPassedContact] = useState({
+    id: 0,
+    profilePhoto: "",
+    favourite: false,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phones: [{ name: "", label: "" }] as Phone[],
+  });
+  const router = useRouter();
+  const id = router.query.id;
+
+  useEffect(() => {
+    const contacts = fetchData();
+    const foundContact = contacts.find((c: any) => c.id == id);
+    if (!foundContact) {
+      return;
+    }
+    setPassedContact(foundContact);
+  }, [router]);
   return (
     <>
       <Head>
@@ -13,23 +33,7 @@ export default function EditContact({ contact }: ContactProps) {
         <meta name="description" content="Browse a contact" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <EditContactItem contact={contact} />
+      <EditContactItem contact={passedContact} />
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async (context: any) => {
-  const contact = contacts.filter((c) => c.id.toString() === context.params.id);
-  return {
-    props: {
-      contact: contact[0],
-    },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const paths = contacts.map((contact) => ({
-    params: { id: contact.id.toString() },
-  }));
-  return { paths, fallback: false };
-};

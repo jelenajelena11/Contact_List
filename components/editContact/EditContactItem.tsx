@@ -1,6 +1,4 @@
-import { ContactProps } from "../contacts/Contact";
-import { faArrowTurnUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Contact, ContactProps, Phone } from "../contacts/Contact";
 import Link from "next/link";
 import AddNumber from "../ui/icons/AddNumber";
 import EmailIcon from "../ui/icons/EmailIcon";
@@ -10,7 +8,6 @@ import PhoneIcon from "../ui/icons/PhoneIcon";
 import {
   ContactFormContainer,
   NewContactForm,
-  BackBtn,
   FormLabel,
   ContactInputsWrapper,
   EmailText,
@@ -21,6 +18,7 @@ import {
   BtnCancel,
   ImageEdit,
   ImgSpan,
+  BackButton,
 } from "../../styles/common/commonAuth.styled";
 import DeleteButton from "../ui/button/delete/DeleteButton";
 import CloseIcon from "../ui/icons/CloseIcon";
@@ -32,10 +30,76 @@ import {
 } from "./EditContactItem.styled";
 import DeleteItemDialog from "../ui/dialog/DeleteItemDialog";
 import useDialog from "../ui/dialog/useDialog";
+import ArrowTurnUp from "../ui/icons/ArrowTurnUp";
+import { SyntheticEvent, useEffect, useState } from "react";
 
-export default function EditContactItem({ contact }: ContactProps) {
-  const handleChange = () => {};
+export default function EditContactItem(props: ContactProps) {
+  const { contact } = props;
+  const [user, setUser] = useState({
+    id: contact.id || 0,
+    profilePhoto: contact.profilePhoto || "",
+    favourite: contact.favourite || false,
+    firstName: contact.firstName || "",
+    lastName: contact.lastName || "",
+    email: contact.email || "",
+    phones: contact.phones || ([{ name: "", label: "" }] as Phone[]),
+  } as Contact);
+
+  useEffect(() => {
+    setUser(contact);
+  }, [props]);
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    if (name === "fullName") {
+      const firstName = value.split(" ")[0];
+      const lastName = value.split(" ")[1];
+      setUser((user) => ({ ...user, firstName, lastName }));
+      return;
+    }
+    setUser((user) => ({ ...user, [name]: value }));
+  };
+
+  const handlePhoneNumberChange = (value: string, index: number) => {
+    if (!value) {
+      return;
+    }
+    const phones = [...user.phones];
+    if (phones[index]) {
+      phones[index].label = value;
+    } else {
+      phones.push({ name: value, label: "" });
+    }
+    setUser((user) => ({ ...user, phones }));
+  };
+
+  const handlePhoneNameChange = (value: string, index: number) => {
+    if (!value) {
+      return;
+    }
+    const phones = [...user.phones];
+    if (phones[index]) {
+      phones[index].name = value;
+    } else {
+      phones.push({ name: value, label: "" });
+    }
+    setUser((user) => ({ ...user, phones }));
+  };
   const { isShowing, toggle } = useDialog();
+
+  const saveChanges = (e: SyntheticEvent<{}>) => {
+    e.preventDefault();
+    const contacts = JSON.parse(localStorage.getItem("contactList") || "");
+    const currentContact = contacts.find((c: Contact) => c.id === user.id);
+    Object.assign(currentContact, user);
+    localStorage.setItem("contactList", JSON.stringify(contacts));
+  };
+
+  const onAddNumberClick = () => {
+    const phones = [...user.phones];
+    phones.push({ name: "", label: "" });
+    setUser((user) => ({ ...user, phones }));
+  };
 
   return (
     <>
@@ -47,18 +111,9 @@ export default function EditContactItem({ contact }: ContactProps) {
         <NewContactForm>
           <FirstRowSpan>
             <Link href="/">
-              <BackBtn>
-                <FontAwesomeIcon
-                  icon={faArrowTurnUp}
-                  style={{
-                    width: "16px",
-                    height: "16px",
-                    transform: "rotateZ(-90deg)",
-                    color: "#c1c1c1",
-                    float: "left",
-                  }}
-                />
-              </BackBtn>
+              <BackButton>
+                <ArrowTurnUp />
+              </BackButton>
             </Link>
             <FirstRowRight onClick={toggle}>
               Delete
@@ -70,45 +125,50 @@ export default function EditContactItem({ contact }: ContactProps) {
             <EmailText>full name</EmailText>
           </FormLabel>
           <EditInput
-            readOnly
             type="text"
             name="fullName"
             onChange={handleChange}
             placeholder="Full name"
+            value={user.firstName + " " + user.lastName}
           />
           <FormLabel>
             <EmailIcon />
             <EmailText>email</EmailText>
           </FormLabel>
           <EditInput
-            readOnly
             type="text"
             name="email"
             onChange={handleChange}
             placeholder="Email"
+            value={user.email}
           />
           <FormLabel>
             <PhoneIcon />
             <EmailText>numbers</EmailText>
           </FormLabel>
           <ContactInputsWrapper>
-            <EditContactInput
-              readOnly
-              type="text"
-              name="number"
-              onChange={handleChange}
-              placeholder="Number"
-            />
-            <EditContactInput
-              readOnly
-              type="text"
-              name="number"
-              onChange={handleChange}
-              placeholder="Cell"
-            />
+            {user.phones &&
+              user.phones.map((phone, i) => (
+                <div key={i}>
+                  <EditContactInput
+                    type="text"
+                    name="number"
+                    onChange={(e) => handlePhoneNameChange(e.target.value, i)}
+                    placeholder="Number"
+                    value={phone.name}
+                  />
+                  <EditContactInput
+                    type="text"
+                    name="number"
+                    onChange={(e) => handlePhoneNumberChange(e.target.value, i)}
+                    placeholder="Cell"
+                    value={phone.label}
+                  />
+                </div>
+              ))}
             <CloseCircle />
           </ContactInputsWrapper>
-          <NumberWrapper>
+          <NumberWrapper onClick={onAddNumberClick}>
             <AddNumber />
             <NumberText>Add number</NumberText>
           </NumberWrapper>
@@ -116,11 +176,12 @@ export default function EditContactItem({ contact }: ContactProps) {
             <BtnCancel>
               <Link href="/">Cancel</Link>
             </BtnCancel>
-            <BtnSave type="submit">Save</BtnSave>
+            <BtnSave type="submit" onClick={(e) => saveChanges(e)}>
+              Save
+            </BtnSave>
           </ButtonWrapper>
         </NewContactForm>
       </ContactFormContainer>
-      )
       <DeleteItemDialog
         contactId={contact.id}
         isShowing={isShowing}

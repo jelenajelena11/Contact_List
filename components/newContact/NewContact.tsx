@@ -1,9 +1,4 @@
 import { Formik } from "formik";
-import {
-  faArrowTurnUp,
-  faArrowUpFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import AddNumber from "../ui/icons/AddNumber";
 import EmailIcon from "../ui/icons/EmailIcon";
@@ -25,110 +20,143 @@ import {
   ButtonWrapper,
   BtnSave,
   BtnCancel,
+  UploadLabel,
 } from "../../styles/common/commonAuth.styled";
+import ArrowTurnUp from "../ui/icons/ArrowTurnUp";
+import Upload from "../ui/icons/Upload";
+import { Contact, ContactsList } from "../contacts/Contact";
+import { SyntheticEvent, useState } from "react";
 
 export default function NewContact() {
+  const [user, setUser] = useState({
+    id: 9,
+    profilePhoto: "",
+    favourite: false,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phones: [{ name: "", label: "" }],
+  } as Contact);
+
+  const saveChanges = (e: SyntheticEvent<{}>) => {
+    e.preventDefault();
+    const contacts = JSON.parse(localStorage.getItem("contactList") || "[]");
+    contacts.push(user);
+    localStorage.setItem("contactList", JSON.stringify(contacts));
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    if (name === "fullName") {
+      const firstName = value.split(" ")[0];
+      const lastName = value.split(" ")[1];
+      setUser((user) => ({ ...user, firstName, lastName }));
+      return;
+    }
+    setUser((user) => ({ ...user, [name]: value }));
+  };
+
+  const handlePhoneNumberChange = (value: string, index: number) => {
+    if (!value) {
+      return;
+    }
+    const phones = [...user.phones];
+    if (phones[index]) {
+      phones[index].label = value;
+    } else {
+      phones.push({ name: value, label: "" });
+    }
+    setUser((user) => ({ ...user, phones }));
+  };
+
+  const handlePhoneNameChange = (value: string, index: number) => {
+    if (!value) {
+      return;
+    }
+    const phones = [...user.phones];
+    if (phones[index]) {
+      phones[index].name = value;
+    } else {
+      phones.push({ name: value, label: "" });
+    }
+    setUser((user) => ({ ...user, phones }));
+  };
+
   return (
     <>
-      <Formik
-        initialValues={{
-          firstName: "",
-          lastName: "",
-          profilePhoto: "",
-          email: "",
-          favourite: "",
-          phones: [],
-        }}
-        onSubmit={() => {}}
-      >
-        {({ handleSubmit, values, handleChange, errors, touched }) => (
-          <ContactFormContainer>
-            <UploadDiv>
-              <label htmlFor="file-input">
-                <FontAwesomeIcon
-                  icon={faArrowUpFromBracket}
-                  style={{
-                    width: "16px",
-                    height: "16px",
-                    color: "white",
-                    cursor: "pointer",
-                  }}
-                />
-              </label>
-              <input type="file" />
-            </UploadDiv>
-            <NewContactForm onSubmit={handleSubmit}>
-              <Link href="/">
-                <BackBtn>
-                  <FontAwesomeIcon
-                    icon={faArrowTurnUp}
-                    style={{
-                      width: "16px",
-                      height: "16px",
-                      transform: "rotateZ(-90deg)",
-                      color: "#c1c1c1",
-                      float: "left",
-                    }}
-                  />
-                </BackBtn>
-              </Link>
-              <FormLabel>
-                <User />
-                <EmailText>full name</EmailText>
-              </FormLabel>
-              <ContactInput
-                type="text"
-                value={values.firstName}
-                name="fullName"
-                onChange={handleChange}
-                placeholder="Full name"
-              />
-              <FormLabel>
-                <EmailIcon />
-                <EmailText>email</EmailText>
-              </FormLabel>
-              <ContactInput
-                type="text"
-                value={values.email}
-                name="email"
-                onChange={handleChange}
-                placeholder="Email"
-              />
-              <FormLabel>
-                <PhoneIcon />
-                <EmailText>numbers</EmailText>
-              </FormLabel>
-              <ContactInputsWrapper>
+      <ContactFormContainer>
+        <UploadDiv>
+          <UploadLabel>
+            <Upload />
+          </UploadLabel>
+        </UploadDiv>
+        <NewContactForm>
+          <Link href="/">
+            <BackBtn>
+              <ArrowTurnUp />
+            </BackBtn>
+          </Link>
+          <FormLabel>
+            <User />
+            <EmailText>full name</EmailText>
+          </FormLabel>
+          <ContactInput
+            type="text"
+            name="fullName"
+            onChange={handleChange}
+            placeholder="Full name"
+            value={user.firstName + " " + user.lastName}
+          />
+          <FormLabel>
+            <EmailIcon />
+            <EmailText>email</EmailText>
+          </FormLabel>
+          <ContactInput
+            type="text"
+            name="email"
+            onChange={handleChange}
+            placeholder="Email"
+            value={user.email}
+          />
+          <FormLabel>
+            <PhoneIcon />
+            <EmailText>numbers</EmailText>
+          </FormLabel>
+          <ContactInputsWrapper>
+            {user.phones.map((phone, i) => (
+              <div key={i}>
                 <ContactInputNew
                   type="text"
-                  value={values.phones}
                   name="number"
-                  onChange={handleChange}
+                  onChange={(e) => handlePhoneNameChange(e.target.value, i)}
                   placeholder="Number"
+                  value={phone.name}
                 />
                 <ContactInputNew
                   type="text"
-                  value={values.phones}
                   name="number"
-                  onChange={handleChange}
+                  onChange={(e) => handlePhoneNumberChange(e.target.value, i)}
                   placeholder="Cell"
+                  value={phone.label}
                 />
-                <CloseCircle />
-              </ContactInputsWrapper>
-              <NumberWrapper>
-                <AddNumber />
-                <NumberText>Add number</NumberText>
-              </NumberWrapper>
-              <ButtonWrapper>
-                <BtnCancel>
-                  <Link href="/">Cancel</Link>
-                </BtnCancel>
-                <BtnSave type="submit">Save</BtnSave>
-              </ButtonWrapper>
-            </NewContactForm>
-          </ContactFormContainer>
-        )}
-      </Formik>
+              </div>
+            ))}
+            <CloseCircle />
+          </ContactInputsWrapper>
+          <NumberWrapper>
+            <AddNumber />
+            <NumberText>Add number</NumberText>
+          </NumberWrapper>
+          <ButtonWrapper>
+            <BtnCancel>
+              <Link href="/">Cancel</Link>
+            </BtnCancel>
+            <BtnSave type="submit" onClick={(e) => saveChanges(e)}>
+              Save
+            </BtnSave>
+          </ButtonWrapper>
+        </NewContactForm>
+      </ContactFormContainer>
     </>
   );
 }

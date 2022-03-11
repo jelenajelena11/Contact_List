@@ -5,6 +5,9 @@ export const DialogTitle = styled.p`
   text-align: center;
   padding: 8.5% 0;
   color: ${theme.colors.gray};
+  @media (max-width: 540px) {
+    padding: 8.5% 1em;
+  }
 `;
 
 export const Button = styled.button`
@@ -16,10 +19,20 @@ export const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
+  @media (max-width: 540px) {
+    width: 100%;
+  }
+
+  @media (max-width: 280px) {
+    padding: 1.3em 1em;
+  }
 `;
 
 export const CancelButton = styled(Button)`
   background-color: ${theme.colors.gray};
+  @media (max-width: 540px) {
+    margin-bottom: 1em;
+  }
 `;
 
 export const DeleteButton = styled(Button)`
@@ -32,6 +45,9 @@ export const ButtonDialogWrapper = styled.div`
   padding: 1.5em 2em 2.5em;
   box-shadow: 58px 79px 6px ${theme.colors.white};
   font-size: 14px;
+  @media (max-width: 540px) {
+    flex-direction: column;
+  }
 `;
 
 export const DialogWrapper = styled.div``;

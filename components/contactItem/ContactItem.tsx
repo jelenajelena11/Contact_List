@@ -6,6 +6,7 @@ import {
   ContactIcons,
   ContactImage,
   DeleteSpan,
+  LinkWrap,
   ButtonDiv,
 } from "./ContactItem.styled";
 import Link from "next/link";
@@ -20,6 +21,8 @@ export default function ContactItem({
   firstName,
   lastName,
   profilePhoto,
+  favourite,
+  onFavoriteClick,
 }: Contact) {
   const { isShowing, toggle } = useDialog();
 
@@ -27,7 +30,10 @@ export default function ContactItem({
     <>
       <ContactItemWrapper>
         <ContactIcons>
-          <FavouriteButton />
+          <FavouriteButton
+            favourite={favourite}
+            onClick={() => onFavoriteClick(id)}
+          />
           <ButtonDiv>
             <Link href={`/editContact/${id}`}>
               <DeleteSpan>
@@ -39,11 +45,13 @@ export default function ContactItem({
             </DeleteSpan>
           </ButtonDiv>
         </ContactIcons>
-        <ContactImage src={profilePhoto} alt="Img" />
         <Link href={`/[id]`} as={`/${id}`}>
-          <Item>
-            {firstName} {lastName}
-          </Item>
+          <LinkWrap>
+            <ContactImage src={profilePhoto} alt="Img" />
+            <Item>
+              {firstName} {lastName}
+            </Item>
+          </LinkWrap>
         </Link>
       </ContactItemWrapper>
       <DeleteItemDialog contactId={id} isShowing={isShowing} onClose={toggle} />

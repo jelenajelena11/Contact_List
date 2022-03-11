@@ -5,7 +5,7 @@ export const HeaderWrapper = styled.div`
   padding: 2em;
   background: linear-gradient(
     to left,
-    ${theme.colors.seaBlue},
+    ${theme.colors.lightTurquoise},
     ${theme.colors.darkTurquoise}
   );
   height: 2vh;
@@ -14,6 +14,14 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  border-bottom: 7px solid #a2d4f1;
+  border-image: linear-gradient(
+      to left,
+      ${theme.colors.headerGradientLightBlue},
+      ${theme.colors.headerGradientDarkBlue}
+    )
+    1;
 `;
 
 export const HeaderTitle = styled.h3`

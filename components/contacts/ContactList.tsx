@@ -1,22 +1,33 @@
 import ContactItem from "../contactItem/ContactItem";
-import { ContactsList } from "./Contact";
-import React, { useState } from "react";
+import { Contact, ContactsList } from "./Contact";
+import React, { useEffect, useState } from "react";
 import { ListWrapper, Tag } from "./ContactList.styled";
 import SearchInput from "../ui/searchInput/SearchInput";
 import { ListItem } from "../contactItem/ContactItem.styled";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useFilterData } from "../ui/searchInput/useSearchTerm";
+import Plus from "../ui/icons/Plus";
+import { fetchData } from "../../mock/fetchData";
 
-export default function ContactList({ contacts }: ContactsList) {
+export default function ContactList({ contacts, onDataUpdated }: ContactsList) {
   const [searchTerm, setSearchTerm] = useState("");
-
   const result = useFilterData(contacts, searchTerm);
+
+  const onFavoriteClick = (id: any) => {
+    const contacts = fetchData();
+    const contact = contacts.find((contact: Contact) => contact.id === id);
+    contact.favourite = !contact.favourite;
+    localStorage.setItem("contactList", JSON.stringify(contacts));
+    onDataUpdated();
+  };
 
   const pull_data = (data: any) => {
     setSearchTerm(data);
   };
+
+  useEffect(() => {
+    localStorage.getItem("contactList");
+  });
 
   return (
     <>
@@ -25,10 +36,7 @@ export default function ContactList({ contacts }: ContactsList) {
         <ListItem>
           <Link href="/addNew">
             <Tag>
-              <FontAwesomeIcon
-                icon={faPlus}
-                style={{ width: "18px", height: "18px" }}
-              />
+              <Plus />
               Add new
             </Tag>
           </Link>
@@ -43,8 +51,9 @@ export default function ContactList({ contacts }: ContactsList) {
                   lastName={cont.lastName}
                   profilePhoto={cont.profilePhoto}
                   email={cont.email}
-                  favourite={false}
+                  favourite={cont.favourite}
                   phones={cont.phones}
+                  onFavoriteClick={onFavoriteClick}
                 />
               );
             })
@@ -59,6 +68,7 @@ export default function ContactList({ contacts }: ContactsList) {
                   email={cont.email}
                   favourite={false}
                   phones={cont.phones}
+                  onFavoriteClick={onFavoriteClick}
                 />
               );
             })}

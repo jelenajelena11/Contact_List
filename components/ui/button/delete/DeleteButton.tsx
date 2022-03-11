@@ -1,6 +1,5 @@
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 export default function DeleteButton({ onClick }: any) {
   return (

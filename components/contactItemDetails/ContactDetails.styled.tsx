@@ -22,8 +22,8 @@ export const ImageWrapper = styled.img`
   height: auto;
 
   @media (max-width: 425px) {
-    width: 100%,
-    height: auto,
+    height: auto;
+    margin: 0 auto;
   }
 `;
 
@@ -46,12 +46,16 @@ export const ContactDetailsContainer = styled.div`
 
   @media (max-width: 425px) {
     flex-direction: column;
+    padding: 3em 0;
   }
 `;
 
 export const LeftWrapper = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 425px) {
+    text-align: center;
+  }
 `;
 
 export const InfoWrapper = styled.div`
@@ -79,11 +83,12 @@ export const Right = styled.div`
 export const InfoLabel = styled.label`
   display: flex;
   align-items: center;
+  color: #7ac4cb;
 `;
 
-export const LabelValue = styled.p``;
-
-export const PhoneList = styled.p``;
+export const LabelValue = styled.p`
+  color: #bbc4c3;
+`;
 
 export const EditBtn = styled.span`
   margin-left: 18px;

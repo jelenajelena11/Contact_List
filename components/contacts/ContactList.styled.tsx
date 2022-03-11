@@ -8,6 +8,9 @@ export const ListWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   width: 75vw;
+  @media (max-width: 425px) {
+    width: 83vw;
+  }
 `;
 
 export const Line = styled.hr`
