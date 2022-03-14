@@ -167,9 +167,19 @@ export const ImgSpan = styled.span`
   bottom: 76.6%;
 `;
 
-export const UploadLabel = styled.label`
+export const UploadLabel = styled.label.attrs({
+  htmlFor: "img",
+})`
   color: white;
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const FileInput = styled.input.attrs({
+  type: "file",
+  id: "img",
+  name: "profilePhoto",
+})`
+  display: none;
 `;

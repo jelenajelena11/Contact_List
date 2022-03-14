@@ -27,13 +27,16 @@ import {
   FirstRowRight,
   EditInput,
   EditContactInput,
+  EditNumbersWrapper,
 } from "./EditContactItem.styled";
 import DeleteItemDialog from "../ui/dialog/DeleteItemDialog";
 import useDialog from "../ui/dialog/useDialog";
 import { SyntheticEvent, useEffect, useState } from "react";
 import ArrowTurnUp from "../ui/icons/ArrowTurnUp";
+import { useRouter } from "next/router";
 
 export default function EditContactItem(props: ContactProps) {
+  const router = useRouter();
   const { contact } = props;
   const [user, setUser] = useState({
     id: contact.id || 0,
@@ -93,6 +96,7 @@ export default function EditContactItem(props: ContactProps) {
     const currentContact = contacts.find((c: Contact) => c.id === user.id);
     Object.assign(currentContact, user);
     localStorage.setItem("contactList", JSON.stringify(contacts));
+    router.push("/");
   };
 
   const onAddNumberClick = () => {
@@ -149,7 +153,7 @@ export default function EditContactItem(props: ContactProps) {
           <ContactInputsWrapper>
             {user.phones &&
               user.phones.map((phone, i) => (
-                <div key={i}>
+                <EditNumbersWrapper key={i}>
                   <EditContactInput
                     type="text"
                     name="number"
@@ -164,9 +168,9 @@ export default function EditContactItem(props: ContactProps) {
                     placeholder="Cell"
                     value={phone.label}
                   />
-                </div>
+                  <CloseCircle />
+                </EditNumbersWrapper>
               ))}
-            <CloseCircle />
           </ContactInputsWrapper>
           <NumberWrapper onClick={onAddNumberClick}>
             <AddNumber />

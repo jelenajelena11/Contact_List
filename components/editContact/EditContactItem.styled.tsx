@@ -37,3 +37,7 @@ export const EditContactInput = styled(ContactInputNew)`
     outline: none;
   }
 `;
+
+export const EditNumbersWrapper = styled.div`
+  width: 100%;
+`;
