@@ -97,3 +97,11 @@ export const EditBtn = styled.span`
     cursor: pointer;
   }
 `;
+
+export const LabelValueWrapper = styled.span`
+  display: flex;
+`;
+
+export const Helper = styled.div`
+  color: #bbc4c3;
+`;

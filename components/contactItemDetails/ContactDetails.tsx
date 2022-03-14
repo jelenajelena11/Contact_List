@@ -10,6 +10,8 @@ import {
   LabelValue,
   EditBtn,
   ImageWrapper,
+  LabelValueWrapper,
+  Helper,
 } from "./ContactDetails.styled";
 import EditButton from "../ui/button/edit/EditButton";
 import FavouriteButton from "../ui/button/favourite/FavouriteButton";
@@ -67,14 +69,14 @@ export default function ContactDetails({
               <PhoneIcon />
               numbers
             </InfoLabel>
-            <LabelValue>
-              {phones.map((phone: Phone) => (
-                <>
+            <Helper>
+              {phones.map((phone: Phone, i) => (
+                <LabelValueWrapper key={i}>
                   <LabelValue>{phone.name}</LabelValue>
                   <LabelValue>{phone.label}</LabelValue>
-                </>
+                </LabelValueWrapper>
               ))}
-            </LabelValue>
+            </Helper>
           </InfoWrapper>
         </Right>
       </ContactDetailsContainer>

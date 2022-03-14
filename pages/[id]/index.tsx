@@ -43,7 +43,6 @@ export default function ContactItemDetails() {
         email={contact.email}
         favourite={contact.favourite}
         phones={contact.phones}
-        onFavoriteClick={() => {}}
       />
     </>
   );

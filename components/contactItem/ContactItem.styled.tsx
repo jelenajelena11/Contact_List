@@ -11,7 +11,7 @@ export const ContactItemWrapper = styled.div`
   margin: 0.4em;
   min-width: 150px;
   padding: 1em;
-  min-height: 150px;
+  min-height: 180px;
   @media (max-width: 425px) {
     width: 100%;
   }

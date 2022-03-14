@@ -20,15 +20,18 @@ import {
   BtnSave,
   BtnCancel,
   UploadLabel,
+  FileInput,
 } from "../../styles/common/commonAuth.styled";
 import ArrowTurnUp from "../ui/icons/ArrowTurnUp";
 import Upload from "../ui/icons/Upload";
 import { Contact, ContactsList } from "../contacts/Contact";
 import { SyntheticEvent, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function NewContact() {
+  const router = useRouter();
   const [user, setUser] = useState({
-    id: 9,
+    id: Math.random(),
     profilePhoto: "",
     favourite: false,
     firstName: "",
@@ -42,6 +45,7 @@ export default function NewContact() {
     const contacts = JSON.parse(localStorage.getItem("contactList") || "[]");
     contacts.push(user);
     localStorage.setItem("contactList", JSON.stringify(contacts));
+    router.push("/");
   };
 
   const handleChange = (e: any) => {
@@ -81,10 +85,19 @@ export default function NewContact() {
     setUser((user) => ({ ...user, phones }));
   };
 
+  const onFileChange = (e: any) => {
+    const { profilePhoto } = e.target.files[0].name;
+    setUser((user) => ({ ...user, profilePhoto }));
+  };
   return (
     <>
       <ContactFormContainer>
         <UploadDiv>
+          <FileInput
+            name="profilePhoto"
+            value={user.profilePhoto}
+            onChange={onFileChange}
+          />
           <UploadLabel>
             <Upload />
           </UploadLabel>
